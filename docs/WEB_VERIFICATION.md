@@ -17,7 +17,7 @@ FieldFlow has been enhanced with true, production-grade Web support while preser
 - **Persistence Model**: Dual-tier storage architecture:
   - **Android / Native**: SQLite 3 database via `sqflite` + filesystem storage via `path_provider` (`attachments/`, `signatures/`).
   - **Web Browser**: SQLite 3 database via WebAssembly (`sqlite3.wasm`) and worker (`sqflite_sw.js`) backed by browser IndexedDB, plus dedicated IndexedDB binary object storage (`idb_shim`) for photos and signatures.
-- **Hosting Readiness**: Configured with `coi-serviceworker.js` to enable Cross-Origin Isolation (`SharedArrayBuffer`) on static hosts such as GitHub Pages without requiring custom server headers.
+- **Hosting Readiness**: Standardized for static hosts such as GitHub Pages using Flutter's native web service worker and IndexedDB persistence without reload loops.
 
 ---
 

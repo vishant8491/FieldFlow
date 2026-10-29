@@ -16,8 +16,18 @@
   -->
   <base href="$FLUTTER_BASE_HREF">
 
-  <!-- coi-serviceworker enables Cross-Origin Isolation (COOP/COEP) on static hosts like GitHub Pages -->
-  <script src="coi-serviceworker.js"></script>
+  <!-- Clean up any legacy coi-serviceworker registrations to prevent reload loops -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function(registrations) {
+        for (var r of registrations) {
+          if (r.active && r.active.scriptURL && r.active.scriptURL.indexOf('coi-serviceworker') !== -1) {
+            r.unregister();
+          }
+        }
+      });
+    }
+  </script>
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
